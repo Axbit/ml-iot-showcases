@@ -1,0 +1,10 @@
+
+# Introduction
+
+This is an attempt to present a case example of machine learning's application on time series data specific to predictive maintenance. Predictive maintenance is about predicting when an in-service machine or part of a machine will fail. This is a very relevant problem to many industrial scenarios to optimize the maintenance scheduling, minimize the downtime and maximizing the usage life of the machine. This example introduces a specific industry scenario that qualify for predictive maintenance. We will utilize time series data presented on Azure AI gallery https://gallery.azure.ai/Experiment/Predictive-Maintenance-Step-1-of-3-data-preparation-and-feature-engineering-2. The data represents measurements from 21 sensors in aircraft engine recorded over time. The main assumption is that the aircraft engine has a progressing degradation pattern, which is supposed to be reflected in sensor's data. Azure ML team has also attempted to solve this problem using built-in predictive maintenance template accomplishing three tasks.
+
+- Predict the remaining useful life (RUL) using multiclass logistic regression.
+- Predict if an asset will fail within certain time window. (Binary classification)
+- Predict if an asset will two connecting time windows let's say either within w0 cycles or within w1 and w0 cycles where w1 > w0. (Multi-class classification)
+
+However, initial checks reveals the the data is time non-stationary and therefore we believe RNN network are better suited methods to capture temporal dynamics. RNNs'networks are kind of neural networks distinguished by their memory used to remember important patterns from the input sequences to predict what's coming next. We will specifically use a special kind of RNN netwrok called long short term memory (LSTM). LSTM has the capability to learn long term patterns. LSTM can be computationally be more expensive but more accurate then other RNNs e.g. GRU. However in cases execution time is not an issue, LSTM is recommended. Further, evalualtion metrics shows better results while using LSTM compare to Azure AI gallery's predictive maintenance templates.
